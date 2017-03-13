@@ -4,12 +4,12 @@
  emuboy85@gmail.com
 *************************************************************/
 
-#define M1A_PWM 3
-#define M1A_Init 12
+#define M1A_PWM 12
+#define M1A_Init 3
 #define M1A_Break 9
 
-#define M1B_PWM 11
-#define M1B_Init 13
+#define M1B_PWM 13
+#define M1B_Init 11
 #define M1B_Break 8
 
 
@@ -31,7 +31,8 @@ void Break(int M_Break){
 
 
 void setup() {
-  
+  Serial.begin(9600);
+  Serial.print("Start");
   //Setup Channel A
   pinMode(M1A_Init , OUTPUT); //Initiates Motor Channel A pin
   pinMode(M1A_Break, OUTPUT);  //Initiates Brake Channel A pin
@@ -43,17 +44,17 @@ void setup() {
 }
 
 void loop(){
-
+  Serial.print("loop");
   //Test Motors
   Move(M1A_Init,M1A_Break,M1A_PWM,255 , 1);
-  Move(M1B_Init,M1B_Break,M1B_PWM,255 , 0);
+  Move(M1B_Init,M1B_Break,M1B_PWM,255 , 1);
 
   delay(3000);
 
-  Break(M1A_Break);
-  Break(M1B_Break);
+ Break(M1A_Break);
+ Break(M1B_Break);
 
-  delay(3000);
+ delay(3000);
    
 }
 
